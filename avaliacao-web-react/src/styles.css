@@ -1,0 +1,20 @@
+.divTable{
+    height: 0px;
+    width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+body {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-image: linear-gradient(to bottom right, #899BA7, #44545F);
+}
+
+#bt-f{
+    margin-left: 15px;
+}
+
+#bt-a{
+    text-align: left !important;
+}

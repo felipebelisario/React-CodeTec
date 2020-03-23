@@ -1,0 +1,22 @@
+{
+  "cargo": [
+    {
+      "id": 1,
+      "nome": "Vendedor"
+    },
+	{
+      "id": 2,
+      "nome": "Segurança"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
