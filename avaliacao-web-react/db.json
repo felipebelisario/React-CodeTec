@@ -1,0 +1,46 @@
+{
+  "cargos": [
+    {
+      "nome": "Vendedor",
+      "id": 1
+    },
+    {
+      "nome": "Analista",
+      "id": 2
+    },
+    {
+      "nome": "Suporte",
+      "id": 3
+    }
+  ],
+  "equipes": [
+    {
+      "nome": "Almoxarifado",
+      "id": 1
+    },
+    {
+      "nome": "Limpeza",
+      "id": 2
+    }
+  ],
+  "membros": [
+    {
+      "id": 1,
+      "cargoId": 1,
+      "equipeId": 2,
+      "nome": "Rachel Karen Green",
+      "email": "rachel@gmail.com",
+      "salario": 3000,
+      "foto": "https://picsum.photos/seed/picsum/100/100"
+    },
+    {
+      "nome": "Felipe",
+      "email": "aaa@aaa",
+      "cargo": "Suporte",
+      "equipe": "Limpeza",
+      "salario": "1234",
+      "foto": "https://muahahaha.com",
+      "id": 2
+    }
+  ]
+}
