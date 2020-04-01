@@ -1,22 +1,110 @@
 {
-  "cargo": [
+  "cargos": [
     {
-      "id": 1,
-      "nome": "Vendedor"
+      "nome": "Vendedor",
+      "id": 1
     },
-	{
-      "id": 2,
-      "nome": "Segurança"
+    {
+      "nome": "Analista",
+      "id": 2
+    },
+    {
+      "nome": "Suporte",
+      "id": 3
     }
   ],
-  "comments": [
+  "equipes": [
+    {
+      "nome": "Almoxarifado",
+      "id": 1
+    },
+    {
+      "nome": "Limpeza",
+      "id": 2
+    }
+  ],
+  "membros": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "cargoId": 1,
+      "equipeId": 2,
+      "nome": "Rachel Karen Green",
+      "email": "rachel@gmail.com",
+      "salario": 3000,
+      "foto": "https://picsum.photos/seed/picsum/100/100"
+    },
+    {
+      "nome": "Felipe",
+      "email": "aaa@aaa",
+      "cargo": "Suporte",
+      "equipe": "Limpeza",
+      "salario": "1234",
+      "foto": "https://muahahaha.com",
+      "id": 2
+    },
+    {
+      "nome": "a",
+      "id": 3
+    },
+    {
+      "nome": "AB",
+      "cargo": "Analista",
+      "equipe": "Limpeza",
+      "id": 4
+    },
+    {
+      "nome": "asa",
+      "equipe": "Limpeza",
+      "cargo": "2",
+      "id": 5
+    },
+    {
+      "equipe": "Limpeza",
+      "cargo": "3",
+      "nome": "ashaush",
+      "id": 6
+    },
+    {
+      "nome": "aaa",
+      "cargo": "2",
+      "id": 7
+    },
+    {
+      "nome": "ihaaa",
+      "id": 8
+    },
+    {
+      "nome": "Felps",
+      "email": "umemailbom@uol.com",
+      "foto": "https://aaa.com",
+      "salario": 1300,
+      "cargoId": "1",
+      "equipeId": "2",
+      "id": 9
+    },
+    {
+      "nome": "kkk",
+      "id": 10
+    },
+    {
+      "undefined": "sadasd",
+      "nome": "aaa",
+      "id": 11
+    },
+    {
+      "nome": "asas",
+      "foto": "jpg",
+      "id": 12
+    },
+    {
+      "nome": "asas",
+      "foto": "https://picsum.photos/seed/picsum/100/100",
+      "id": 13
+    },
+    {
+      "foto": "https://img.quizur.com/f/img5d7e82aae2ede9.52928847.jpg?lastEdited=1568572087",
+      "nome": "vixe narutin",
+      "id": 14
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

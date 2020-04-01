@@ -23,13 +23,13 @@ const Header = () => {
             <Collapse isOpen={open} navbar>
                 <Nav className='mr-auto' navbar>
                     <NavItem>
-                        <NavLink tag={Link} to='/cargos'>Cargo</NavLink>
+                        <NavLink tag={Link} to='/cargos'>Cargos</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink tag={Link} to='/generos'>Equipe</NavLink>
+                        <NavLink tag={Link} to='/equipes'>Equipes</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink tag={Link} to='/generos'>Membro</NavLink>
+                        <NavLink tag={Link} to='/membros'>Membros</NavLink>
                     </NavItem>
                 </Nav>
             </Collapse>
