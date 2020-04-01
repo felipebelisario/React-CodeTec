@@ -8,7 +8,6 @@ import Equipe from './components/cruds/Equipe/Equipe'
 import NewEquipe from './components/cruds/Equipe/NewEquipe'
 import EditEquipe from './components/cruds/Equipe/EditEquipe'
 import Membro from './components/cruds/Membro/Membro'
-import NewMembro from './components/cruds/Membro/NewMembro'
 import InfoMembro from './components/cruds/Membro/InfoMembro'
 import {
     BrowserRouter as Router,
@@ -31,7 +30,6 @@ function App() {
                         <Route path='/equipes/new' exact component={NewEquipe} />
                         <Route path='/equipes/:id' exact component={EditEquipe} />
                         <Route path='/membros' exact component={Membro} />
-                        <Route path='/membros/new' exact component={NewMembro} />
                         <Route path='/membros/:id' exact component={InfoMembro} />
                     </Switch>
                 </div>

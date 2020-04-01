@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, createRef, useEffect } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 
 const InfoMembro = ({ match }) => {
     const [data, setData] = useState([])
+    const [img, setImg] = useState('')
     const [success, setSuccess] = useState(false)
+    const imagemRef = createRef()
 
     useEffect(() => {
         axios.get('/membros/' + match.params.id).then(res => {
@@ -12,8 +14,15 @@ const InfoMembro = ({ match }) => {
         })
     }, [match.params.id])
 
-    const onChange = evt => {
-        setData(evt.target.value)
+    if(data.foto == undefined){
+        setData({
+            ...data,
+            foto: 'https://i.ibb.co/2qSJmL8/anonimo.png'
+        })
+    }
+
+    const onError = () => {
+        imagemRef.current.src = 'https://i.ibb.co/2qSJmL8/anonimo.png'
     }
     const save = () => {
         axios.put('/membros/' + match.params.id, {}).then(res => {
@@ -21,21 +30,23 @@ const InfoMembro = ({ match }) => {
         })
     }
 
-    if(success){
+    if (success) {
         return <Redirect to={'/membros'} />
     }
 
     return (
         <div className='container'>
-        <br />
+            <br />
             <div className='card text-white bg-dark'>
-            <div className='card-header bg-color'>
+                <div className='card-header bg-color'>
                     <form>
-                        <div className="form-row">
-                            <div style={{display: "flex", alignItems: "center"}} className="form-group col-md-2">
-                                <img style={{height: 100, width: 100}} src={data.foto ? data.foto : 'https://i.ibb.co/2qSJmL8/anonimo.png'} alt={data.nome} className='img-fluid img-thumbnail' />
+                        <div style={{ marginBottom: -15 }} className="form-row">
+                            <div style={{ display: "flex", alignItems: "center" }} className="form-group col-md-2">
+                                <img style={{ height: 100, width: 100 }} ref={imagemRef}
+                                    src={data.foto} onError={onError}
+                                    alt={data.nome} className='img-fluid img-thumbnail' />
                             </div>
-                            <div style={{display: "flex", alignItems: "flex-end", marginLeft: -60}} className="form-group col-md-6">
+                            <div style={{ display: "flex", alignItems: "flex-end", marginLeft: -60 }} className="form-group col-md-6">
                                 <h1>{data.nome}</h1>
                             </div>
                         </div>
@@ -43,25 +54,19 @@ const InfoMembro = ({ match }) => {
                 </div>
                 <div className='card-body'>
                     <form>
-                        <div class="form-group row">
-                            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-                            <div class="col-sm-10">
-                            <input type="text" readonly class="form-control" id="staticEmail" value="email@example.com" />
+                        <div className="form-group row">
+                            <label for="staticEmail" className="col-sm-2 col-form-label">Email</label>
+                            <div className="col-sm-10">
+                                <input type="text" readonly className="form-control" id="staticEmail" value={data.email} />
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                            <div class="col-sm-10">
-                            <input type="password" class="form-control" id="inputPassword" />
+                        <div className="form-group row">
+                            <label for="inputPassword" className="col-sm-2 col-form-label">Password</label>
+                            <div className="col-sm-10">
+                                <input type="password" className="form-control" id="inputPassword" />
                             </div>
                         </div>
                     </form>
-                    
-                    
-                    {/* <div className='card-body card-header-color'>
-                    <label style={{float: "left", marginTop: 5}}>Email: </label>
-                    <input style={{width: 400, marginLeft: 50}} className='form-control' type="text" value={data.email} readonly/>
-                    </div> */}
                 </div>
             </div>
         </div>
