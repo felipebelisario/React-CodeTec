@@ -6,11 +6,13 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 const Membro = () => {
     const [data, setData] = useState([])
+    const [tempData, setTempData] = useState([])
     const [form, setForm] = useState({})
-    const [img, setImg] = useState('')
     const [cargos, setCargos] = useState([])
     const [equipes, setEquipes] = useState([])
+    const [search, setSearch] = useState('')
     const [modal, setModal] = useState(false);
+    const [tableClick, setTableClick] = useState(null)
 
     const onChange = field => evt => {
         setForm({
@@ -20,8 +22,11 @@ const Membro = () => {
     }
 
     const save = () => {
-        if (form.nome != undefined) {
-            axios.post('/membros', form).then(res => {
+        if (form.nome !== undefined) {
+            axios.post('/membros', {
+                ...form,
+                nome: form.nome[0].toUpperCase() + form.nome.slice(1)
+            }).then(res => {
                 setModal(!modal)
                 window.location.reload()
             })
@@ -31,6 +36,10 @@ const Membro = () => {
     }
 
     const toggle = () => setModal(!modal);
+
+    const toggleTable = id => {
+        setTableClick(id)
+    }
 
     const handleChange = field => (event, maskedvalue, floatvalue) => {
         setForm({
@@ -42,6 +51,7 @@ const Membro = () => {
     useEffect(() => {
         axios.get('/membros').then(res => {
             setData(res.data)
+            setTempData(res.data)
         })
         axios.get('/cargos').then(res => {
             setCargos(res.data)
@@ -51,16 +61,25 @@ const Membro = () => {
         })
     }, [])
 
-    const deleteGeneric = id => {
-        axios.delete('/membros/' + id).then(res => {
-            const filtrado = data.filter(item => item.id !== id)
-            setData(filtrado)
-        })
+    // const getSortData = () => {
+    //     axios.get('/membros').then(res => {
+    //         setData(res.data)
+    //         setTempData(res.data)
+    //     })
+    // }
+
+    const searchChange = evt => {
+        setSearch(evt.target.value)
+    }
+
+    const setFiltro = () => {
+        const filtrado = data.filter(item => (item.nome).toUpperCase().indexOf(search.toUpperCase()) !== -1)
+        setTempData(filtrado)
     }
 
     const render_line = record => {
         return (
-            <tr onClick={() => { return <Redirect to={'/membros/' + record.id} /> }} key={record.id}>
+            <tr onClick={() => toggleTable(record.id)} key={record.id}>
                 <th scope="row">{record.id}</th>
                 <td>{record.nome}</td>
                 <td>{record.email}</td>
@@ -71,11 +90,31 @@ const Membro = () => {
         )
     }
 
+    if (tableClick != null) {
+        return <Redirect to={'/membros/' + tableClick} />
+    }
+
+    const keyPressed = evt => {
+        if (evt.keyCode === 13) {
+            setFiltro()
+        }
+    }
+
 
     return (
         <div>
             <div className='container'>
                 <br />
+                <form onSubmit={e => { e.preventDefault() }}>
+                    <div class="form-row">
+                        <div className='form-group col-md-10'>
+                            <input onKeyDown={keyPressed} className="form-control" onChange={searchChange} type="text" placeholder="Procurar por nome" value={search} />
+                        </div>
+                        <div className='form-group col-md-2'>
+                            <button onClick={setFiltro} className="btn btn-dark form-control" type="button">Procurar</button>
+                        </div>
+                    </div>
+                </form>
                 <div className="card border-secondary text-white bg-dark">
                     <div className="card-header text-white bg-color">
                         Membros
@@ -84,13 +123,19 @@ const Membro = () => {
                         <thead>
                             <tr>
                                 <th scope='ID'>Id</th>
-                                <th scope='Nome'>Nome</th>
+                                <th scope='Nome'>
+                                    <button onClick={() => console.log(1)} style={{ width: 20, height: 20, marginRight: 5 }} className='btn btn-light btn-sm'>
+                                        <img style={{ width: 15, height: 15, display: "flex", marginLeft: -5.5 }} src="https://image.flaticon.com/icons/svg/107/107799.svg"></img>
+                                    </button> 
+                                
+                                    Nome
+                                </th>
                                 <th scope='Email'>Email</th>
                                 <th scope='Ações'>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map(render_line)}
+                            {tempData.map(render_line)}
                         </tbody>
                     </table>
                 </div>
@@ -99,11 +144,25 @@ const Membro = () => {
                     <button type='button' onClick={toggle} className='btn btn-light'>Novo membro</button>
                 </div>
                 <br />
+                <nav className='bg-black' aria-label="...">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <span class="page-link">Previous</span>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
 
-            <Modal style={{color: "white"}} isOpen={modal} className="modal-lg" toggle={toggle}>
-                <ModalHeader style={{backgroundColor: "#2A2A2A"}} toggle={toggle}>Adicionar membro</ModalHeader>
-                <ModalBody style={{backgroundColor: "#3E3E3E"}}>
+            <Modal style={{ color: "white" }} isOpen={modal} className="modal-lg" toggle={toggle}>
+                <ModalHeader style={{ backgroundColor: "#2A2A2A" }} toggle={toggle}>Adicionar membro</ModalHeader>
+                <ModalBody style={{ backgroundColor: "#3E3E3E" }}>
                     <form>
                         <div class="form-row">
                             <div class="form-group col-md-6">
@@ -128,22 +187,22 @@ const Membro = () => {
                                 <label for="inputCargo">Cargo</label>
                                 <select className='custom-select mr-sm-2 input-color' onChange={onChange('cargoId')} id='inputCargo'>
                                     <option selected>Selecione...</option>
-                                    {cargos.map(cargo => <option key={cargo.id} value={cargo.id} select={cargo.id === form.cargo}>{cargo.nome}</option>)}
+                                    {cargos.map(cargo => <option key={cargo.id} value={cargo.id} select={cargo.id === form.cargoId}>{cargo.nome}</option>)}
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="inputEquipe">Equipe</label>
                                 <select className='custom-select mr-sm-2 input-color' onChange={onChange('equipeId')} id='inputEquipe'>
                                     <option selected>Selecione...</option>
-                                    {equipes.map(equipe => <option key={equipe.id} value={equipe.id} select={equipe.id === form.equipe}>{equipe.nome}</option>)}
+                                    {equipes.map(equipe => <option key={equipe.id} value={equipe.id} select={equipe.id === form.equipeId}>{equipe.nome}</option>)}
                                 </select>
                             </div>
                         </div>
                     </form>
                 </ModalBody>
-                <ModalFooter style={{backgroundColor: "#2A2A2A"}}>
+                <ModalFooter style={{ backgroundColor: "#2A2A2A" }}>
                     <Button color="light" onClick={save}>Salvar</Button>{' '}
-                    <Button color="secondary" onClick={toggle}>Cancel</Button>
+                    <Button color="secondary" onClick={toggle}>Cancelar</Button>
                 </ModalFooter>
             </Modal>
         </div>

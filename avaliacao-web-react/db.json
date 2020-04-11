@@ -30,7 +30,7 @@
       "equipeId": 2,
       "nome": "Rachel Karen Green",
       "email": "rachel@gmail.com",
-      "salario": 3000,
+      "salario": 305,
       "foto": "https://picsum.photos/seed/picsum/100/100"
     },
     {
@@ -51,28 +51,30 @@
       "id": 3
     },
     {
-      "nome": "ihaa",
-      "email": "deu",
-      "salario": 1.21,
-      "cargoId": "1",
+      "nome": "Okabe Rintarou",
+      "email": "okb.rintaro@steinsgate.com",
+      "foto": "https://pm1.narvii.com/6317/75f5f83d9d4fbb608d5e440aa1a10025da4583a7_hq.jpg",
+      "salario": 12345.67,
+      "cargoId": "2",
+      "equipeId": "1",
+      "id": 8
+    },
+    {
+      "nome": "Naruto Uzumaki",
+      "email": "narutindoamor@konoha.com",
+      "foto": "https://img.quizur.com/f/img5e7bcd12af0ec7.47171965.png?lastEdited=1585171736",
+      "salario": 12.34,
+      "cargoId": "2",
       "equipeId": "2",
-      "id": 4
+      "id": 9
     },
     {
-      "nome": "Tyler Joseph",
-      "email": "ty.joseph@gmail.com",
-      "salario": 4500,
-      "cargoId": "1",
-      "equipeId": "2",
-      "id": 5
+      "nome": "Ihaa",
+      "id": 10
     },
     {
-      "nome": "Tyler",
-      "id": 6
-    },
-    {
-      "nome": "sas",
-      "id": 7
+      "nome": "Ihaaaaaa",
+      "id": 11
     }
   ]
 }
