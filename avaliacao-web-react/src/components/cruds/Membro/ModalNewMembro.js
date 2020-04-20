@@ -1,6 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import {
+    Button,
+    Modal,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+} from 'reactstrap'
+import CurrencyInput from 'react-currency-input'
 
-const ModalNew = props => {
+const ModalNewMembro = props => {
+    const [form, setForm] = useState({})
+
     const handleChange = field => (event, maskedvalue, floatvalue) => {
         setForm({
             ...form,
@@ -8,9 +18,16 @@ const ModalNew = props => {
         })
     }
 
+    const onChange = field => evt => {
+        setForm({
+            ...form,
+            [field]: evt.target.value
+        })
+    }
+
     return (
-        <Modal style={{ color: "white" }} isOpen={modal} className="modal-lg" toggle={toggleModal}>
-            <ModalHeader style={{ backgroundColor: "#2A2A2A" }} toggle={toggleModal}>Adicionar membro</ModalHeader>
+        <Modal style={{ color: "white" }} isOpen={props.modal} className="modal-lg" toggle={props.toggleModal}>
+            <ModalHeader style={{ backgroundColor: "#2A2A2A" }} toggle={props.toggleModal}>Adicionar membro</ModalHeader>
             <ModalBody style={{ backgroundColor: "#3E3E3E" }}>
                 <form>
                     <div class="form-row">
@@ -36,25 +53,25 @@ const ModalNew = props => {
                             <label for="inputCargo">Cargo</label>
                             <select className='custom-select mr-sm-2 input-color' onChange={onChange('cargoId')} id='inputCargo'>
                                 <option selected>Selecione...</option>
-                                {cargos.map(cargo => <option key={cargo.id} value={cargo.id} select={cargo.id === form.cargoId}>{cargo.nome}</option>)}
+                                {props.cargos.map(cargo => <option key={cargo.id} value={cargo.id} select={cargo.id === form.cargoId}>{cargo.nome}</option>)}
                             </select>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputEquipe">Equipe</label>
                             <select className='custom-select mr-sm-2 input-color' onChange={onChange('equipeId')} id='inputEquipe'>
                                 <option selected>Selecione...</option>
-                                {equipes.map(equipe => <option key={equipe.id} value={equipe.id} select={equipe.id === form.equipeId}>{equipe.nome}</option>)}
+                                {props.equipes.map(equipe => <option key={equipe.id} value={equipe.id} select={equipe.id === form.equipeId}>{equipe.nome}</option>)}
                             </select>
                         </div>
                     </div>
                 </form>
             </ModalBody>
             <ModalFooter style={{ backgroundColor: "#2A2A2A" }}>
-                <Button color="light" onClick={save}>Salvar</Button>{' '}
-                <Button color="secondary" onClick={toggleModal}>Cancelar</Button>
+                <Button color="light" onClick={() => props.save(form)}>Salvar</Button>{' '}
+                <Button color="secondary" onClick={props.toggleModal}>Cancelar</Button>
             </ModalFooter>
         </Modal>
     )
 }
 
-export default ModalNew
+export default ModalNewMembro

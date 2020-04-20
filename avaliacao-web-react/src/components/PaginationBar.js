@@ -52,7 +52,7 @@ const PaginationBar = props => {
                     [...Array(props.numPages)].map((page, i) => {
                         return (
                             <PaginationItem active={i === currentPage} key={i}>
-                                <PaginationLink onClick={e => { handlePageClick(e, i); console.log(i, currentPage) }} href="#">
+                                <PaginationLink onClick={e => handlePageClick(e, i)} href="#">
                                     {i + 1}
                                 </PaginationLink>
                             </PaginationItem>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 
 const EditEquipe = ({ match }) => {
     const [name, setName] = useState('')
@@ -43,6 +43,8 @@ const EditEquipe = ({ match }) => {
                                 <input type='text' onChange={onChange} value={name} className='form-control input-color' id='name' />
                             </div>
                             <button type='button' onClick={save} className='btn btn-light'>Salvar</button>
+                            <Link to={'/equipes'} style={{ position: "absolute", marginLeft: 10 }} type='button' className='btn btn-secondary'>Cancelar</Link>
+
                         </form>
                     </div>
                 </div>
