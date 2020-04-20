@@ -60,7 +60,7 @@ const InfoMembro = ({ match }) => {
     if (data.foto === undefined) {
         setData({
             ...data,
-            foto: 'https://i.ibb.co/2qSJmL8/anonimo.png'
+            foto: '(Não especificado)'
         })
     }
 

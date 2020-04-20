@@ -2,9 +2,21 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link, Redirect } from 'react-router-dom'
 import CurrencyInput from 'react-currency-input'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import PaginationBar from '../../../PaginationBar'
+import {
+    Button,
+    Modal,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+    Pagination,
+    PaginationItem,
+    PaginationLink
+} from 'reactstrap';
 
 const Membro = () => {
+    var pageSize = 5
+
     const [data, setData] = useState([])
     const [tempData, setTempData] = useState([])
     const [form, setForm] = useState({})
@@ -13,6 +25,9 @@ const Membro = () => {
     const [search, setSearch] = useState('')
     const [modal, setModal] = useState(false);
     const [tableClick, setTableClick] = useState(null)
+    const [currentPage, setCurrentPage] = useState(0);
+    const [numPages, setNumPages] = useState(0)
+    
 
     const onChange = field => evt => {
         setForm({
@@ -35,7 +50,7 @@ const Membro = () => {
         }
     }
 
-    const toggle = () => setModal(!modal);
+    const toggleModal = () => setModal(!modal);
 
     const toggleTable = id => {
         setTableClick(id)
@@ -52,6 +67,7 @@ const Membro = () => {
         axios.get('/membros').then(res => {
             setData(res.data)
             setTempData(res.data)
+            setNumPages(Math.ceil(res.data.length / pageSize))
         })
         axios.get('/cargos').then(res => {
             setCargos(res.data)
@@ -59,7 +75,7 @@ const Membro = () => {
         axios.get('/equipes').then(res => {
             setEquipes(res.data)
         })
-    }, [])
+    }, [pageSize])
 
     // const getSortData = () => {
     //     axios.get('/membros').then(res => {
@@ -100,6 +116,9 @@ const Membro = () => {
         }
     }
 
+    const onCurrentPageChange = (newCurrentPage) => {
+        setCurrentPage(newCurrentPage)
+    }
 
     return (
         <div>
@@ -126,8 +145,8 @@ const Membro = () => {
                                 <th scope='Nome'>
                                     <button onClick={() => console.log(1)} style={{ width: 20, height: 20, marginRight: 5 }} className='btn btn-light btn-sm'>
                                         <img style={{ width: 15, height: 15, display: "flex", marginLeft: -5.5 }} src="https://image.flaticon.com/icons/svg/107/107799.svg"></img>
-                                    </button> 
-                                
+                                    </button>
+
                                     Nome
                                 </th>
                                 <th scope='Email'>Email</th>
@@ -135,33 +154,25 @@ const Membro = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {tempData.map(render_line)}
+                            {
+                                tempData
+                                    .slice(currentPage * pageSize, (currentPage + 1) * pageSize)
+                                    .map(render_line)
+                            }
                         </tbody>
                     </table>
                 </div>
                 <br />
-                <div id='bt-a'>
-                    <button type='button' onClick={toggle} className='btn btn-light'>Novo membro</button>
+                <div className='d-flex justify-content-end' id='bt-a'>
+                    <button type='button' onClick={toggleModal} className='btn font-weight-bold btn-light'>Novo membro</button>
                 </div>
                 <br />
-                <nav className='bg-black' aria-label="...">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <span class="page-link">Previous</span>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
+                <PaginationBar numPages={numPages} onCurrentPageChange={onCurrentPageChange} />
+                <br />
             </div>
 
-            <Modal style={{ color: "white" }} isOpen={modal} className="modal-lg" toggle={toggle}>
-                <ModalHeader style={{ backgroundColor: "#2A2A2A" }} toggle={toggle}>Adicionar membro</ModalHeader>
+            <Modal style={{ color: "white" }} isOpen={modal} className="modal-lg" toggle={toggleModal}>
+                <ModalHeader style={{ backgroundColor: "#2A2A2A" }} toggle={toggleModal}>Adicionar membro</ModalHeader>
                 <ModalBody style={{ backgroundColor: "#3E3E3E" }}>
                     <form>
                         <div class="form-row">
@@ -202,7 +213,7 @@ const Membro = () => {
                 </ModalBody>
                 <ModalFooter style={{ backgroundColor: "#2A2A2A" }}>
                     <Button color="light" onClick={save}>Salvar</Button>{' '}
-                    <Button color="secondary" onClick={toggle}>Cancelar</Button>
+                    <Button color="secondary" onClick={toggleModal}>Cancelar</Button>
                 </ModalFooter>
             </Modal>
         </div>
