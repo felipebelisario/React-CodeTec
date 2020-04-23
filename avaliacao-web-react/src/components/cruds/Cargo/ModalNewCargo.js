@@ -7,7 +7,7 @@ import {
     ModalFooter,
 } from 'reactstrap'
 
-const ModalNewEquipe = props => {
+const ModalNewCargo = props => {
     const [name, setName] = useState('')
 
     const onChange = evt => {
@@ -16,12 +16,12 @@ const ModalNewEquipe = props => {
 
     return (
         <Modal style={{ color: "white" }} isOpen={props.modal} className="modal-lg" toggle={props.toggleModal}>
-            <ModalHeader style={{ backgroundColor: "#2A2A2A" }} toggle={props.toggleModal}>Adicionar equipe</ModalHeader>
+            <ModalHeader style={{ backgroundColor: "#2A2A2A" }} toggle={props.toggleModal}>Adicionar cargo</ModalHeader>
             <ModalBody style={{ backgroundColor: "#3E3E3E" }}>
                 <form>
                     <div className='form-group'>
                         <label for="inputNome">Nome</label>
-                        <input type='text' onChange={onChange} value={name} className='form-control input-color' id='name' placeholder='Nome da equipe' />
+                        <input type='text' onChange={onChange} value={name} className='form-control input-color' id='name' placeholder='Nome do cargo' />
                     </div>
                 </form>
             </ModalBody>
@@ -33,4 +33,4 @@ const ModalNewEquipe = props => {
     )
 }
 
-export default ModalNewEquipe
+export default ModalNewCargo

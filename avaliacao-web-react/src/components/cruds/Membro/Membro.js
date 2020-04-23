@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link, Redirect } from 'react-router-dom'
-import PesquisaBar from '../../PesquisaBar'
-import PaginationBar from '../../PaginationBar'
+import PesquisaBar from '../../../reused-components/PesquisaBar'
+import PaginationBar from '../../../reused-components/PaginationBar'
 import ModalNewMembro from './ModalNewMembro'
+import OrderButton from '../../../reused-components/OrderButton'
 
 const Membro = () => {
     var pageSize = 5
@@ -12,10 +13,11 @@ const Membro = () => {
     const [tempData, setTempData] = useState([])
     const [cargos, setCargos] = useState([])
     const [equipes, setEquipes] = useState([])
-    const [modal, setModal] = useState(false);
+    const [modal, setModal] = useState(false)
     const [tableClick, setTableClick] = useState(null)
-    const [currentPage, setCurrentPage] = useState(0);
+    const [currentPage, setCurrentPage] = useState(0)
     const [numPages, setNumPages] = useState(0)
+    const [disableButtons, setDisableButtons] = useState(false)
 
     const save = form => {
         if (form.nome !== undefined) {
@@ -51,16 +53,6 @@ const Membro = () => {
         })
     }, [pageSize])
 
-    // const getSortData = () => {
-    //     axios.get('/membros').then(res => {
-    //         setData(res.data)
-    //         setTempData(res.data)
-    //     })
-    // }
-
-    
-    
-
     const render_line = record => {
         return (
             <tr onClick={() => toggleTable(record.id)} key={record.id}>
@@ -78,21 +70,8 @@ const Membro = () => {
         return <Redirect to={'/membros/' + tableClick} />
     }
 
-    
-
     const onCurrentPageChange = (newCurrentPage) => {
         setCurrentPage(newCurrentPage)
-    }
-
-    const sortByProperty = (property) => {
-        return (a, b) => {
-            if (a[property] > b[property])
-                return 1;
-            else if (a[property] < b[property])
-                return -1;
-
-            return 0;
-        }
     }
 
     const setNewTempData = newTempData => {
@@ -103,29 +82,41 @@ const Membro = () => {
         setNumPages(Math.ceil(tempNumPages / pageSize))
     }
 
+    const setDisabled = isDisabled => {
+        setDisableButtons(isDisabled)
+    }
+
     return (
         <div>
             <div className='container'>
                 <br />
-                <PesquisaBar data={data} setNewTempData={setNewTempData} setTempNumPages={setTempNumPages} keyWordsToFind={["id", "nome", "email"]}/>
+                <PesquisaBar data={data} setNewTempData={setNewTempData} setTempNumPages={setTempNumPages} keyWordsToFind={['id', 'nome', 'email']} />
                 <div className='card border-secondary text-white bg-dark'>
                     <div className='card-header text-white bg-color'>
                         Membros
                     </div>
-                    <div className='card-body' style={{ height: 411, overflow: 'auto' }}>
+                    <div className='card-body' style={{ marginTop: 10, height: 410 }}>
                         <table className='table table-hover table-dark'>
                             <thead>
                                 <tr>
-                                    <th scope='ID'>Id</th>
-                                    <th onClick={() => tempData.sort(sortByProperty('nome'))} scope='Nome'>
-                                        Nome
+                                    <th scope='ID'>
+                                        Id <OrderButton setNewTempData={setNewTempData} property='id' tempData={tempData} 
+                                                ordemPadraoPor='id' disabled={disableButtons} setDisabled={setDisabled} />
                                     </th>
-                                    <th scope='Email'>Email</th>
+                                    <th scope='Nome'>
+                                        Nome <OrderButton setNewTempData={setNewTempData} property='nome' tempData={tempData} 
+                                                ordemPadraoPor='id' disabled={disableButtons} setDisabled={setDisabled}/>
+                                    </th>
+                                    <th scope='Email'>
+                                        Email <OrderButton setNewTempData={setNewTempData} property='email' tempData={tempData} 
+                                                ordemPadraoPor='id' disabled={disableButtons} setDisabled={setDisabled}/>
+                                    </th>
                                     <th scope='Ações'>Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {
+                                    
                                     tempData
                                         .slice(currentPage * pageSize, (currentPage + 1) * pageSize)
                                         .map(render_line)

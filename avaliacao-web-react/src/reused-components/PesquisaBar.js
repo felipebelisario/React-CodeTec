@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 const PesquisaBar = props => {
     const [search, setSearch] = useState('')
@@ -22,7 +22,7 @@ const PesquisaBar = props => {
                             return true
                         
                     }
-                    if(typeof item[propriedade] === "string" && propriedade !== "foto"){
+                    if(typeof item[propriedade] === "string"){
                         if (item[propriedade].toUpperCase().indexOf(search.toUpperCase()) !== -1) 
                             return true
                     }
@@ -36,7 +36,7 @@ const PesquisaBar = props => {
 
     return (
         <form onSubmit={e => { e.preventDefault() }}>
-            <div class="form-row">
+            <div className="form-row">
                 <div className='form-group col-md-10'>
                     <input onKeyDown={keyPressed} className="form-control" onChange={searchChange} type="text" placeholder="Procurar registros" value={search} />
                 </div>

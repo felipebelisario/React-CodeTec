@@ -11,6 +11,38 @@
     {
       "nome": "Suporte",
       "id": 3
+    },
+    {
+      "nome": "Analista de Suporte",
+      "id": 4
+    },
+    {
+      "nome": "Zelador",
+      "id": 5
+    },
+    {
+      "nome": "Entregador",
+      "id": 6
+    },
+    {
+      "nome": "Full Stack",
+      "id": 7
+    },
+    {
+      "nome": "QA",
+      "id": 8
+    },
+    {
+      "nome": "Arquiteto de Software",
+      "id": 9
+    },
+    {
+      "nome": "Técnico",
+      "id": 10
+    },
+    {
+      "nome": "DBA",
+      "id": 11
     }
   ],
   "equipes": [
@@ -21,22 +53,6 @@
     {
       "nome": "Limpeza",
       "id": 2
-    },
-    {
-      "nome": "Uma equipe daora",
-      "id": 3
-    },
-    {
-      "nome": "Uma equipe meee",
-      "id": 4
-    },
-    {
-      "nome": "Aooo equipe boa essa aqui viu",
-      "id": 5
-    },
-    {
-      "nome": "Uma equipe linda",
-      "id": 6
     }
   ],
   "membros": [
@@ -50,159 +66,46 @@
       "foto": "https://picsum.photos/seed/picsum/100/100"
     },
     {
-      "nome": "Felipe",
-      "email": "aaa@aaa",
-      "cargo": "Suporte",
-      "equipe": "Limpeza",
-      "salario": "1234",
-      "foto": "https://muahahaha.com",
+      "nome": "Celestine McElrath",
+      "email": "celestine@gmail.com",
+      "salario": 2500,
+      "cargoId": "2",
+      "equipeId": "1",
       "id": 2
     },
     {
-      "nome": "Okabe Rintarou",
-      "email": "okb.rintaro@steinsgate.com",
-      "foto": "https://pm1.narvii.com/6317/75f5f83d9d4fbb608d5e440aa1a10025da4583a7_hq.jpg",
-      "salario": 12345.67,
-      "cargoId": "2",
-      "equipeId": "1",
-      "id": 8
-    },
-    {
-      "nome": "Naruto Uzumaki",
-      "email": "narutindoamor@konoha.com",
-      "foto": "https://img.quizur.com/f/img5e7bcd12af0ec7.47171965.png?lastEdited=1585171736",
-      "salario": 12.34,
+      "nome": "Luan Costa",
+      "email": "lu.costa@hotmail.com",
+      "salario": 1200.5,
       "cargoId": "1",
       "equipeId": "2",
-      "id": 9
+      "id": 3
     },
     {
-      "nome": "Ihaa",
-      "id": 10
-    },
-    {
-      "nome": "KKKKKKKKKKKKKK",
-      "email": "blabla@ihaa.com",
-      "foto": "tem nao sinhô",
-      "salario": 1.24,
-      "id": 11
-    },
-    {
-      "nome": "KKKKKKKKKKKKKK",
-      "email": "blabla@ihaa.com",
-      "foto": "tem nao sinhô",
-      "salario": 1.24,
-      "id": 12
-    },
-    {
-      "nome": "KKKKKKKKKKKKKK",
-      "email": "blabla@ihaa.com",
-      "foto": "tem nao sinhô",
-      "salario": 1.24,
-      "id": 13
-    },
-    {
-      "nome": "KKKKKKKKKKKKKK",
-      "email": "blabla@ihaa.com",
-      "foto": "tem nao sinhô",
-      "salario": 1.24,
-      "id": 14
-    },
-    {
-      "nome": "KKKKKKKKKKKKKK",
-      "email": "blabla@ihaa.com",
-      "foto": "tem nao sinhô",
-      "salario": 1.24,
-      "id": 15
-    },
-    {
-      "nome": "KKKKKKKKKKKKKK",
-      "email": "blabla@ihaa.com",
-      "foto": "tem nao sinhô",
-      "salario": 1.24,
-      "id": 16
-    },
-    {
-      "nome": "KKKKKKKKKKKKKK",
-      "email": "blabla@ihaa.com",
-      "foto": "tem nao sinhô",
-      "salario": 1.24,
-      "id": 17
-    },
-    {
-      "nome": "KKKKKKKKKKKKKK",
-      "email": "blabla@ihaa.com",
-      "foto": "tem nao sinhô",
-      "salario": 1.24,
-      "id": 18
-    },
-    {
-      "nome": "KKKKKKKKKKKKKK",
-      "email": "blabla@ihaa.com",
-      "foto": "tem nao sinhô",
-      "salario": 1.24,
-      "id": 19
-    },
-    {
-      "nome": "KKKKKKKKKKKKKK",
-      "email": "blabla@ihaa.com",
-      "foto": "tem nao sinhô",
-      "salario": 1.24,
-      "id": 20
-    },
-    {
-      "nome": "Aaata",
-      "email": "hihi",
-      "salario": 2.34,
-      "cargoId": "2",
+      "nome": "Rafael Castro",
+      "email": "rafa_castro@tempmail.com.br",
+      "salario": 600,
+      "cargoId": "3",
       "equipeId": "2",
-      "id": 21
+      "id": 4
     },
     {
-      "nome": "Asdad",
-      "id": 22
-    },
-    {
-      "nome": "Dasd",
-      "id": 23
-    },
-    {
-      "nome": "Sfdsfgsfdg",
-      "id": 24
-    },
-    {
-      "nome": "Dasfsdf",
-      "id": 25
-    },
-    {
-      "nome": "Aaaaa",
-      "id": 26
-    },
-    {
-      "nome": "Aaaaaaaaaaaaaaaaaa",
-      "id": 27
-    },
-    {
-      "nome": "Ssssssssssssssssssss",
-      "id": 28
-    },
-    {
-      "nome": "Ddddddddddddddd",
-      "id": 29
-    },
-    {
-      "nome": "Asdasdasdasdasdasdasdasd",
-      "id": 30
-    },
-    {
-      "nome": "1212121212",
-      "id": 31
-    },
-    {
-      "nome": "Aooopa deu certo",
-      "cargoId": "2",
+      "nome": "Rock Lee",
+      "email": "rocklee@gmail.com",
+      "foto": "https://vignette.wikia.nocookie.net/naruto/images/9/97/Rock_Lee_Part_I.png/revision/latest?cb=20160926212512&path-prefix=pt-br",
+      "salario": 10,
+      "cargoId": "6",
       "equipeId": "1",
-      "id": 32
+      "id": 5
+    },
+    {
+      "nome": "Geralt of Rivia",
+      "email": "geraldao@hotmail.com",
+      "foto": "https://i.pinimg.com/236x/df/68/71/df68710d9a600caa7ede15532a586966.jpg",
+      "salario": 1,
+      "cargoId": "8",
+      "equipeId": "2",
+      "id": 6
     }
   ]
 }

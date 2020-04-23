@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import ModalEditEquipe from './ModalEditEquipe'
 import ModalNewEquipe from './ModalNewEquipe'
-import PaginationBar from '../../PaginationBar'
-import PesquisaBar from '../../PesquisaBar'
+import PaginationBar from '../../../reused-components/PaginationBar'
+import PesquisaBar from '../../../reused-components/PesquisaBar'
+import OrderButton from '../../../reused-components/OrderButton'
 
 const Equipe = () => {
     var pageSize = 5
 
     const [data, setData] = useState([])
+    const [tempId, setTempId] = useState()
     const [tempData, setTempData] = useState([])
-    const [search, setSearch] = useState('')
-    const [modalNew, setModalNew] = useState(false);
-    const [tableClick, setTableClick] = useState(null)
-    const [currentPage, setCurrentPage] = useState(0);
+    const [modalNew, setModalNew] = useState(false)
+    const [modalEdit, setModalEdit] = useState(false);
+    const [currentPage, setCurrentPage] = useState(0)
     const [numPages, setNumPages] = useState(0)
+    const [disableButtons, setDisableButtons] = useState(false)
 
     useEffect(() => {
         axios.get('/equipes').then(res => {
@@ -22,17 +24,17 @@ const Equipe = () => {
             setTempData(res.data)
             setNumPages(Math.ceil(res.data.length / pageSize))
         })
-    }, [])
+    }, [pageSize])
 
     const deleteGeneric = id => {
         axios.delete('/equipes/' + id).then(res => {
             const filtrado = data.filter(item => item.id !== id)
             setData(filtrado)
+            window.location.reload()
         })
     }
 
-
-    const save = name => {
+    const saveNew = name => {
         if (name !== '') {
             if (name.length > 0) {
                 axios.post('/equipes', {
@@ -47,15 +49,31 @@ const Equipe = () => {
         }
     }
 
-    const toggleModalNew = () => setModalNew(!modalNew);
+    const saveEdit = (id, name) => {
+        if (name.length > 0) {
+            axios.put('/equipes/' + id, {
+                nome: name
+            }).then(res => {
+                setModalEdit(!modalEdit)
+                window.location.reload()
+            })
+        }
+    }
+
+    const toggleModalNew = () => setModalNew(!modalNew)
+
+    const toggleModalEdit = id => {
+        setTempId(id)
+        setModalEdit(!modalEdit)
+    }
 
     const render_line = record => {
         return (
             <tr key={record.id}>
-                <th scope="row">{record.id}</th>
+                <th scope='row'>{record.id}</th>
                 <td>{record.nome}</td>
                 <td>
-                    <Link to={'/equipes/' + record.id} className='btn btn-outline-light'>Editar</Link>
+                    <button onClick={() => toggleModalEdit(record.id)} className='btn btn-outline-light'>Editar</button>
                     <button id='bt-f' onClick={() => { if (window.confirm('Tem certeza que quer remover esse item?')) deleteGeneric(record.id) }} className='btn btn-outline-light'>Excluir</button>
                 </td>
             </tr>
@@ -74,20 +92,30 @@ const Equipe = () => {
         setNumPages(Math.ceil(tempNumPages / pageSize))
     }
 
+    const setDisabled = isDisabled => {
+        setDisableButtons(isDisabled)
+    }
+
     return (
         <div className='container'>
             <br />
             <PesquisaBar data={data} setNewTempData={setNewTempData} setTempNumPages={setTempNumPages}/>
-            <div className="card border-secondary text-white bg-dark">
-                <div className="card-header text-white bg-color">
+            <div className='card border-secondary text-white bg-dark'>
+                <div className='card-header text-white bg-color'>
                     Equipes
                 </div>
-                <div className='card-body' style={{ height: 411, overflow: 'auto' }}>
+                <div className='card-body' style={{marginTop: 10, height: 410 }}>
                     <table className='table table-hover table-dark'>
                         <thead>
                             <tr>
-                                <th scope='ID'>Id</th>
-                                <th scope='Nome'>Nome</th>
+                                <th scope='ID'>
+                                    Id <OrderButton setNewTempData={setNewTempData} property='id' tempData={tempData} 
+                                            ordemPadraoPor='id' disabled={disableButtons} setDisabled={setDisabled} />
+                                </th>
+                                <th scope='Nome'>
+                                    Nome <OrderButton setNewTempData={setNewTempData} property='nome' tempData={tempData} 
+                                            ordemPadraoPor='id' disabled={disableButtons} setDisabled={setDisabled} />
+                                </th>
                                 <th scope='Ações'>Ações</th>
                             </tr>
                         </thead>
@@ -109,7 +137,8 @@ const Equipe = () => {
             <PaginationBar numPages={numPages} onCurrentPageChange={onCurrentPageChange} />
             <br />
 
-            <ModalNewEquipe toggleModal={toggleModalNew} modal={modalNew} save={save} />
+            <ModalNewEquipe toggleModal={toggleModalNew} modal={modalNew} save={saveNew} />
+            <ModalEditEquipe toggleModal={toggleModalEdit} modal={modalEdit} save={saveEdit} recordId={tempId} />
         </div>
 
     )

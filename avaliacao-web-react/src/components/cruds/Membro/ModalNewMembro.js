@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import {
     Button,
     Modal,
@@ -30,33 +30,33 @@ const ModalNewMembro = props => {
             <ModalHeader style={{ backgroundColor: "#2A2A2A" }} toggle={props.toggleModal}>Adicionar membro</ModalHeader>
             <ModalBody style={{ backgroundColor: "#3E3E3E" }}>
                 <form>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
+                    <div className="form-row">
+                        <div className="form-group col-md-6">
                             <label for="inputNome">Nome</label>
-                            <input type="text" onChange={onChange('nome')} value={form.nome} class="form-control input-color" id="inputNome" />
+                            <input type="text" onChange={onChange('nome')} value={form.nome} className="form-control input-color" id="inputNome" />
                         </div>
-                        <div class="form-group col-md-6">
+                        <div className="form-group col-md-6">
                             <label for="inputEmail">Email</label>
-                            <input type="email" onChange={onChange('email')} value={form.email} class="form-control input-color" id="inputEmail" />
+                            <input type="email" onChange={onChange('email')} value={form.email} className="form-control input-color" id="inputEmail" />
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label for="inputFoto">Foto (URL)</label>
-                        <input type="img" onChange={onChange('foto')} value={form.foto} class="form-control input-color" id="inputFoto" />
+                        <input type="img" onChange={onChange('foto')} value={form.foto} className="form-control input-color" id="inputFoto" />
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
+                    <div className="form-row">
+                        <div className="form-group col-md-4">
                             <label for="inputSalario">Salário</label>
                             <CurrencyInput prefix='R$' onChange={handleChange('salario')} value={form.salario} className='form-control input-color' id='inputSalario' placeholder='Salário' />
                         </div>
-                        <div class="form-group col-md-4">
+                        <div className="form-group col-md-4">
                             <label for="inputCargo">Cargo</label>
                             <select className='custom-select mr-sm-2 input-color' onChange={onChange('cargoId')} id='inputCargo'>
                                 <option selected>Selecione...</option>
                                 {props.cargos.map(cargo => <option key={cargo.id} value={cargo.id} select={cargo.id === form.cargoId}>{cargo.nome}</option>)}
                             </select>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div className="form-group col-md-4">
                             <label for="inputEquipe">Equipe</label>
                             <select className='custom-select mr-sm-2 input-color' onChange={onChange('equipeId')} id='inputEquipe'>
                                 <option selected>Selecione...</option>

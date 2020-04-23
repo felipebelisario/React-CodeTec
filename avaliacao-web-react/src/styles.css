@@ -73,3 +73,7 @@ img {
     background-color: #323435 !important;
     border: solid 1px #323435;
 }
+
+table {
+    table-layout: fixed !important;
+}

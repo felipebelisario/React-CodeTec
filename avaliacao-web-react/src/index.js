@@ -4,6 +4,7 @@ import App from './App'
 import * as serviceWorker from './serviceWorker'
 import './styles.css'
 import 'bootstrap/dist/css/bootstrap.css'
+import 'open-iconic/font/css/open-iconic-bootstrap.css'
 
 ReactDOM.render(<App />, document.getElementById('root'))
 
