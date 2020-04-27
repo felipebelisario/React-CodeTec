@@ -1,0 +1,128 @@
+{
+  "cargos": [
+    {
+      "nome": "Vendedor",
+      "id": 1
+    },
+    {
+      "nome": "Analista",
+      "id": 2
+    },
+    {
+      "nome": "Suporte",
+      "id": 3
+    },
+    {
+      "nome": "Analista de Suporte",
+      "id": 4
+    },
+    {
+      "nome": "Zelador",
+      "id": 5
+    },
+    {
+      "nome": "Entregador",
+      "id": 6
+    },
+    {
+      "nome": "Full Stack",
+      "id": 7
+    },
+    {
+      "nome": "QA",
+      "id": 8
+    },
+    {
+      "nome": "Arquiteto de Software",
+      "id": 9
+    },
+    {
+      "nome": "Técnico",
+      "id": 10
+    },
+    {
+      "nome": "DBA",
+      "id": 11
+    }
+  ],
+  "equipes": [
+    {
+      "nome": "Almoxarifado",
+      "id": 1
+    },
+    {
+      "nome": "Limpeza",
+      "id": 2
+    }
+  ],
+  "membros": [
+    {
+      "id": 1,
+      "cargoId": 1,
+      "equipeId": 2,
+      "nome": "Rachel Karen Gree",
+      "email": "rachel@gmail.com",
+      "salario": 305,
+      "foto": "https://picsum.photos/seed/picsum/100/100"
+    },
+    {
+      "nome": "Celestine McElrath",
+      "email": "celestine@gmail.com",
+      "salario": 2500,
+      "cargoId": "2",
+      "equipeId": "1",
+      "id": 2
+    },
+    {
+      "nome": "Luan Costa",
+      "email": "lu.costa@hotmail.com",
+      "salario": 1200.5,
+      "cargoId": "1",
+      "equipeId": "2",
+      "id": 3
+    },
+    {
+      "nome": "Rafael Castro",
+      "email": "rafa_castro@tempmail.com.br",
+      "salario": 600.5,
+      "cargoId": "3",
+      "equipeId": "2",
+      "id": 4,
+      "foto": "(Não especificado)"
+    },
+    {
+      "nome": "Rock Lee",
+      "email": "lee@gmail.com",
+      "foto": "https://vignette.wikia.nocookie.net/naruto/images/9/97/Rock_Lee_Part_I.png/revision/latest?cb=20160926212512&path-prefix=pt-br",
+      "salario": 10,
+      "cargoId": "6",
+      "equipeId": "1",
+      "id": 5
+    },
+    {
+      "nome": "Geralt of Rivia",
+      "email": "geraldao@hotmail.com",
+      "foto": "https://i.pinimg.com/236x/df/68/71/df68710d9a600caa7ede15532a586966.jpg",
+      "salario": 1,
+      "cargoId": "8",
+      "equipeId": "2",
+      "id": 6
+    },
+    {
+      "nome": "Tony Stark",
+      "email": "stark_tony@uol.com.br",
+      "foto": "https://vignette.wikia.nocookie.net/osvingadores/images/2/23/Homem_de_ferro.jpg/revision/latest?cb=20130613203643&path-prefix=pt-br",
+      "salario": 100000000,
+      "cargoId": "9",
+      "equipeId": "1",
+      "id": 7
+    },
+    {
+      "salario": "R$ 1.200,00",
+      "cargoId": "8",
+      "equipeId": "1",
+      "nome": "Felipe",
+      "id": 8
+    }
+  ]
+}
