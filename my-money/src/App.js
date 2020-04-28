@@ -36,6 +36,7 @@ function App() {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
+    
 
     return (
         <div class="d-flex toggled" id="wrapper">
