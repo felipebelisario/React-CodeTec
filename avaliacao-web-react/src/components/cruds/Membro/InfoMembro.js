@@ -4,6 +4,14 @@ import { Redirect } from 'react-router-dom'
 import CurrencyInput from 'react-currency-input'
 
 const InfoMembro = ({ match }) => {
+<<<<<<< HEAD
+=======
+    var formatterReal = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    })
+
+>>>>>>> 9f7776f790e23ee63e1e50f07b9000fa6124a1ef
     const [data, setData] = useState([])
     const [cargo, setCargo] = useState([])
     const [cargos, setCargos] = useState({})
@@ -86,7 +94,11 @@ const InfoMembro = ({ match }) => {
         })
     }
 
+<<<<<<< HEAD
     if(success){
+=======
+    if (success) {
+>>>>>>> 9f7776f790e23ee63e1e50f07b9000fa6124a1ef
         return <Redirect to='/membros' />
     }
 
@@ -109,12 +121,17 @@ const InfoMembro = ({ match }) => {
                                     </div>
                                     <div style={{ position: "relative" }} className="form-group col-md-5">
                                         <button style={{ position: "absolute", right: 80 }} onClick={toggle} type='button' className='btn btn-light'>Editar</button>
+<<<<<<< HEAD
                                         <button style={{ position: "absolute", right: 0 }} onClick={() => {if (window.confirm('Tem certeza que quer remover esse item?')) deleteGeneric(data.id)}} type='button' className='btn btn-secondary'>Excluir</button>
+=======
+                                        <button style={{ position: "absolute", right: 0 }} onClick={() => { if (window.confirm('Tem certeza que quer remover esse item?')) deleteGeneric(data.id) }} type='button' className='btn btn-secondary'>Excluir</button>
+>>>>>>> 9f7776f790e23ee63e1e50f07b9000fa6124a1ef
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <div className='card-body'>
+<<<<<<< HEAD
                             <form>
                                 <div style={{ marginLeft: 20 }} className="form-group row">
                                     <div style={{ backgroundColor: "#2A2A2A", height: 40, textAlign: "center" }} className="col-sm-2 col-form-label rounded">
@@ -122,6 +139,15 @@ const InfoMembro = ({ match }) => {
                                     </div>
                                     <div style={{ marginTop: 6 }} className="col-sm-10">
                                         <p className="form-group" style={{ color: "#DDDDDD" }}>{data.email}</p>
+=======
+                            <form autoComplete="off">
+                                <div style={{ marginTop: 10, marginLeft: 20 }} className="form-group row">
+                                    <div style={{ backgroundColor: "#2A2A2A", height: 40, textAlign: "center" }} className="col-sm-2 col-form-label rounded">
+                                        <label for="staticEmail" >Email:</label>
+                                    </div>
+                                    <div style={{ marginTop: 6 }} className="form-group col-sm-10">
+                                        <p style={{ color: "#DDDDDD" }}>{data.email}</p>
+>>>>>>> 9f7776f790e23ee63e1e50f07b9000fa6124a1ef
                                     </div>
                                 </div>
                                 <div style={{ marginLeft: 20 }} className="form-group row">
@@ -129,6 +155,7 @@ const InfoMembro = ({ match }) => {
                                         <label for="staticEmail" >Foto (URL):</label>
                                     </div>
                                     <div style={{ marginTop: 6 }} className="form-group col-sm-10">
+<<<<<<< HEAD
                                         <p style={{ color: "#DDDDDD" }}>{data.foto}</p>
                                     </div>
                                 </div>
@@ -137,6 +164,16 @@ const InfoMembro = ({ match }) => {
                                         <label for="staticEmail" >Equipe:</label>
                                     </div>
                                     <div style={{ marginTop: 6 }} className="col-sm-10">
+=======
+                                        <p style={{ whiteSpace: "nowrap", overflow: "auto", color: "#DDDDDD" }}>{data.foto}</p>
+                                    </div>
+                                </div>
+                                <div style={{ marginLeft: 20 }} className="form-group row">
+                                    <div style={{ backgroundColor: "#2A2A2A", height: 40, textAlign: "center" }} className="col-sm-2 col-form-label rounded">
+                                        <label for="staticEmail" >Equipe:</label>
+                                    </div>
+                                    <div style={{ marginTop: 6 }} className="form-group col-sm-10">
+>>>>>>> 9f7776f790e23ee63e1e50f07b9000fa6124a1ef
                                         <p style={{ color: "#DDDDDD" }}>{equipe.nome}</p>
                                     </div>
                                 </div>
@@ -144,7 +181,11 @@ const InfoMembro = ({ match }) => {
                                     <div style={{ backgroundColor: "#2A2A2A", height: 40, textAlign: "center" }} className="col-sm-2 col-form-label rounded">
                                         <label for="staticEmail" >Cargo:</label>
                                     </div>
+<<<<<<< HEAD
                                     <div style={{ marginTop: 6 }} className="col-sm-10">
+=======
+                                    <div style={{ marginTop: 6 }} className="form-group col-sm-10">
+>>>>>>> 9f7776f790e23ee63e1e50f07b9000fa6124a1ef
                                         <p style={{ color: "#DDDDDD" }}>{cargo.nome}</p>
                                     </div>
                                 </div>
@@ -152,8 +193,13 @@ const InfoMembro = ({ match }) => {
                                     <div style={{ backgroundColor: "#2A2A2A", height: 40, textAlign: "center" }} className="col-sm-2 col-form-label rounded">
                                         <label for="staticEmail" >Salário:</label>
                                     </div>
+<<<<<<< HEAD
                                     <div style={{ marginTop: 6 }} className="col-sm-10">
                                         <p style={{ color: "#DDDDDD" }}>R${data.salario}</p>
+=======
+                                    <div style={{ marginTop: 6 }} className="form-group col-sm-10">
+                                        <p style={{ color: "#DDDDDD" }}>{formatterReal.format(data.salario)}</p>
+>>>>>>> 9f7776f790e23ee63e1e50f07b9000fa6124a1ef
                                     </div>
                                 </div>
                             </form>
@@ -178,14 +224,22 @@ const InfoMembro = ({ match }) => {
                                         <input onChange={onChange('nome')} className='form-control' value={data.nome} />
                                     </div>
                                     <div style={{ position: "relative" }} className="form-group col-md-5">
+<<<<<<< HEAD
                                         <button style={{ position: "absolute", right: 0 }} onClick={() => {window.location.reload()}} type='button' className='btn btn-secondary'>Cancelar</button>
+=======
+                                        <button style={{ position: "absolute", right: 0 }} onClick={() => { window.location.reload() }} type='button' className='btn btn-secondary'>Cancelar</button>
+>>>>>>> 9f7776f790e23ee63e1e50f07b9000fa6124a1ef
                                         <button style={{ position: "absolute", right: 100 }} onClick={save} type='button' className='btn btn-light'>Salvar</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <div className='card-body'>
+<<<<<<< HEAD
                             <form>
+=======
+                            <form autoComplete="off">
+>>>>>>> 9f7776f790e23ee63e1e50f07b9000fa6124a1ef
                                 <div style={{ marginLeft: 20 }} className="form-group row">
                                     <div style={{ backgroundColor: "#2A2A2A", height: 40, textAlign: "center" }} className="col-sm-2 col-form-label rounded">
                                         <label for="staticEmail" >Email:</label>

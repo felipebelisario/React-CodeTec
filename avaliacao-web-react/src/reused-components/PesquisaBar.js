@@ -14,6 +14,7 @@ const PesquisaBar = props => {
     }
 
     const setFiltro = () => {
+<<<<<<< HEAD
         const filtrado = props.data.filter(item => {
             for (var propriedade in item) {
                 if (item.hasOwnProperty(propriedade) && (props.keyWordsToFind === undefined || props.keyWordsToFind.indexOf(propriedade) !== -1)) {
@@ -30,6 +31,28 @@ const PesquisaBar = props => {
             }
             return false    
         })
+=======
+        var filtrado
+
+        if(search !== ''){
+            filtrado = props.data.filter(item => {
+                for (var propriedade in item) {
+                    if (item.hasOwnProperty(propriedade) && (props.keyWordsToFind === undefined || props.keyWordsToFind.indexOf(propriedade) !== -1)) {
+                        if(typeof item[propriedade] === "number"){
+                            if (item[propriedade] === parseInt(search)) 
+                                return true
+                        }
+                        if(typeof item[propriedade] === "string"){
+                            if (item[propriedade].toUpperCase().indexOf(search.toUpperCase()) !== -1) 
+                                return true
+                        }
+                    }
+                }
+                return false    
+            })
+        } else filtrado = props.data
+
+>>>>>>> 9f7776f790e23ee63e1e50f07b9000fa6124a1ef
         props.setTempNumPages(filtrado.length)
         props.setNewTempData(filtrado)
     }

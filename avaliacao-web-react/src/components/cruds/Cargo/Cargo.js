@@ -98,7 +98,11 @@ const Equipe = () => {
     }
 
     return (
+<<<<<<< HEAD
         <div className='container'>
+=======
+        <div style={{marginLeft: 100, marginRight: 100}}>
+>>>>>>> 9f7776f790e23ee63e1e50f07b9000fa6124a1ef
             <br />
             <PesquisaBar data={data} setNewTempData={setNewTempData} setTempNumPages={setTempNumPages}/>
             <div className='card border-secondary text-white bg-dark'>
@@ -135,7 +139,11 @@ const Equipe = () => {
                 <button type='button' onClick={toggleModalNew} className='btn font-weight-bold btn-light'>Novo cargo</button>
             </div>
             <br />
+<<<<<<< HEAD
             <PaginationBar numPages={numPages} onCurrentPageChange={onCurrentPageChange} />
+=======
+            <PaginationBar numPages={numPages} onCurrentPageChange={onCurrentPageChange} currentPage={currentPage}/>
+>>>>>>> 9f7776f790e23ee63e1e50f07b9000fa6124a1ef
             <br />
 
             <ModalNewCargo toggleModal={toggleModalNew} modal={modalNew} save={saveNew} />

@@ -45,11 +45,19 @@ const OrderButton = props => {
 
     const sortDescending = (property) => (a, b) => {
         if (a[property] < b[property])
+<<<<<<< HEAD
             return 1;
         else if (a[property] > b[property])
             return -1;
 
         return 0;
+=======
+            return 1
+        else if (a[property] > b[property])
+            return -1
+
+        return 0
+>>>>>>> 9f7776f790e23ee63e1e50f07b9000fa6124a1ef
     }
 
     return (

@@ -8,6 +8,13 @@ import OrderButton from '../../../reused-components/OrderButton'
 
 const Membro = () => {
     var pageSize = 5
+<<<<<<< HEAD
+=======
+    var formatterReal = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    })
+>>>>>>> 9f7776f790e23ee63e1e50f07b9000fa6124a1ef
 
     const [data, setData] = useState([])
     const [tempData, setTempData] = useState([])
@@ -23,7 +30,11 @@ const Membro = () => {
         if (form.nome !== undefined) {
             axios.post('/membros', {
                 ...form,
+<<<<<<< HEAD
                 nome: form.nome[0].toUpperCase() + form.nome.slice(1)
+=======
+                salario: formatterReal.format(form.salario)
+>>>>>>> 9f7776f790e23ee63e1e50f07b9000fa6124a1ef
             }).then(res => {
                 setModal(!modal)
                 window.location.reload()
@@ -88,7 +99,11 @@ const Membro = () => {
 
     return (
         <div>
+<<<<<<< HEAD
             <div className='container'>
+=======
+            <div style={{marginLeft: 100, marginRight: 100}}>
+>>>>>>> 9f7776f790e23ee63e1e50f07b9000fa6124a1ef
                 <br />
                 <PesquisaBar data={data} setNewTempData={setNewTempData} setTempNumPages={setTempNumPages} keyWordsToFind={['id', 'nome', 'email']} />
                 <div className='card border-secondary text-white bg-dark'>
@@ -130,7 +145,11 @@ const Membro = () => {
                     <button type='button' onClick={toggleModal} className='btn font-weight-bold btn-light'>Novo membro</button>
                 </div>
                 <br />
+<<<<<<< HEAD
                 <PaginationBar numPages={numPages} onCurrentPageChange={onCurrentPageChange} />
+=======
+                <PaginationBar numPages={numPages} onCurrentPageChange={onCurrentPageChange} currentPage={currentPage}/>
+>>>>>>> 9f7776f790e23ee63e1e50f07b9000fa6124a1ef
                 <br />
             </div>
 
