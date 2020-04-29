@@ -1,7 +1,6 @@
 import React, {
     useEffect,
-    useState,
-    useReducer
+    useState
 } from 'react'
 import Rest from './rest'
 import $ from 'jquery'
