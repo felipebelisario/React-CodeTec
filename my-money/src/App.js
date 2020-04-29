@@ -1,6 +1,7 @@
 import React, {
     useEffect,
-    useState
+    useState,
+    useReducer
 } from 'react'
 import Rest from './rest'
 import $ from 'jquery'
@@ -16,6 +17,7 @@ function App() {
     const data = useGet('movimentacoes')
     const [postData, post] = usePost('movimentacoes/2020-04')
     const [deleteData, remove] = useDelete()
+    const [btn, setBtn] = useState(false)
 
     const salvar = () => {
         post({
@@ -31,14 +33,9 @@ function App() {
     const toogleSidebar = () => {
         
     }
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    
 
     return (
-        <div class="d-flex toggled" id="wrapper">
+        <div class={btn === true ? "d-flex" : "d-flex toggled"} id="wrapper">
 
             <div class="bg-light border-right" id="sidebar-wrapper">
                 <div class="sidebar-heading">Start Bootstrap </div>
@@ -55,11 +52,7 @@ function App() {
             <div id="page-content-wrapper">
 
                 <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
-                    <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
-
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                    <button class="btn btn-primary" onClick={() => setBtn(!btn)} id="menu-toggle">Toggle Menu</button>
 
                     <a class="navbar-brand" href="#">Navbar</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
