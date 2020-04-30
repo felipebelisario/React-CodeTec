@@ -4,7 +4,8 @@ import React, {
     useReducer
 } from 'react'
 import Rest from './rest'
-import $ from 'jquery'
+import FullCalendar from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid'
 
 const baseURL = 'https://mymoney-71935.firebaseio.com/'
 const {
@@ -30,76 +31,70 @@ function App() {
         remove('movimentacoes/2020-04/-M6-hV-ETYC0dcs9Hxpa')
     }
 
-    const toogleSidebar = () => {
-        
-    }
 
     return (
-        <div class={btn === true ? "d-flex" : "d-flex toggled"} id="wrapper">
+        <div class="wrapper">
 
-            <div class="bg-light border-right" id="sidebar-wrapper">
-                <div class="sidebar-heading">Start Bootstrap </div>
-                <div class="list-group list-group-flush">
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+            <nav id="sidebar">
+                <div id="dismiss">
+                    <i class="fas fa-arrow-left"></i>
                 </div>
-            </div>
 
-            <div id="page-content-wrapper">
+                <div style={{ textAlign: "center" }} class="sidebar-header">
+                    <h3>
+                        <img style={{ width: 120, height: 100 }} src="https://imagepng.org/wp-content/uploads/2019/05/dinheiro-icone.png" alt="img" /> <br />
+                        My Money
+                    </h3>
+                </div>
 
-                <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
-                    <button class="btn btn-primary" onClick={() => setBtn(!btn)} id="menu-toggle">Toggle Menu</button>
+                <ul class="list-unstyled components">
+                    <p>Bem vindo!</p>
+                    <li class="active">
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
+                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+                    </li>
+                    <li>
+                        <a href="#">Portfolio</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </nav>
 
-                    <a class="navbar-brand" href="#">Navbar</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Dropdown
-                            </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled" href="#">Disabled</a>
-                            </li>
-                        </ul>
-                        <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
+            <div style={{ display: "flex", backgroundColor: "#b0c0e0", flexDirection: "column", maxWidth: "100%" }}>
+
+                <div className="header-tabs">
+                    <div style={{ color: "white", textAlign: "center" }}>
+                        <h1>Calendar</h1>
                     </div>
-                </nav>
-
-                <div class="container-fluid">
-                    <h1 class="mt-4">Simple Sidebar</h1>
-                    <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-                    <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
                 </div>
+
+                <div className="container">
+                    <br />
+                    <FullCalendar style={{ width: 30 }}
+                        defaultView="dayGridMonth"
+                        plugins={[dayGridPlugin]}
+                        weekends={true}
+                        events={[
+                            { title: 'event 1', date: '2020-04-30' },
+                            { title: '+ R$ 400000,00', date: '2020-04-29' }
+                        ]}
+                    />
+
+                    <br />
+                </div>
+
+
+
             </div>
 
-        </div>
 
-
-
+        </div >
     )
 }
 

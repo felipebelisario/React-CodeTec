@@ -8,6 +8,7 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import './style.css'
 
+
 ReactDOM.render(<
     React.StrictMode ><App /></React.StrictMode>,
     document.getElementById('root')
