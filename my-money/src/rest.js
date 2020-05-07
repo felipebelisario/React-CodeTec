@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import axios from 'axios'
 
 const INITIAL_STATE = {
@@ -28,6 +28,7 @@ const reducer = (state, action) => {
 const init = baseURL => {
     const useGet = resource => {
         const [data, dispatch] = useReducer(reducer, INITIAL_STATE)
+        const [data1, dispatch2] = useReducer(reducer, INITIAL_STATE)
 
         useEffect(() => {
             dispatch({ type: 'REQUEST' })
@@ -39,38 +40,7 @@ const init = baseURL => {
         return data
     }
 
-    const usePost = resource => {
-        const [data, dispatch] = useReducer(reducer, INITIAL_STATE)
-
-        const post = data => {
-            dispatch({ type: 'REQUEST' })
-            axios.post(baseURL + resource + '.json', data).then(res => {
-                dispatch({
-                    type: 'SUCCESS',
-                    data: res.data
-                })
-            })
-        }
-
-        return [data, post]
-    }
-
-    const useDelete = () => {
-        const [data, dispatch] = useReducer(reducer, INITIAL_STATE)
-
-        const remove = resource => {
-            dispatch({ type: 'REQUEST' })
-            axios.delete(baseURL + resource + '.json').then(() => {
-                dispatch({
-                    type: 'SUCCESS'
-                })
-            })
-        }
-
-        return [data, remove]
-    }
-
-    return { useGet, usePost, useDelete }
+    return { useGet }
 }
 
 export default init

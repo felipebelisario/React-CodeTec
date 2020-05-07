@@ -4,8 +4,8 @@
 
 .wrapper {
     display: flex;
-    margin: 0;
-    padding: 0;
+    width: 100%;
+    height: 100%;
 }
 
 #sidebar {
@@ -75,19 +75,19 @@ a, a:hover, a:focus {
     background: #7386D5;
     color: #fff;
     transition: all 0.3s;
-    border-right: 2px solid #47748b;
+    border-right: 2px solid #374f7e;
     text-shadow: 1px 1px 5px black;
 }
 
 #sidebar .sidebar-header {
     padding: 20px;
     background: #6d7fcc;
-    border-bottom: 2px dotted #47748b;
+    border-bottom: 2px dotted #374f7e;
 }
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+    border-bottom: 1px solid #374f7e;
 }
 
 #sidebar ul p {
@@ -108,7 +108,7 @@ a, a:hover, a:focus {
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
-    background: #6d7fcc;
+    background:  #374f7e;
     text-shadow: 1px 1px 1px black;
 }
 ul ul a {
@@ -124,6 +124,43 @@ ul ul a {
     min-height: 80px;
     max-height: 80px;
     background-color: #7386D5;
-    border-bottom: 1px solid #47748b;
+    border-bottom: 2px solid #374f7e;
     text-shadow: 1px 1px 1px black;
+}
+
+a{outline:none}
+
+.resize-calendar {
+    text-align: center;
+    width: 90%;
+    height: 90%;
+}
+
+.align-labels{
+    text-align: left;
+    margin-top: 5%;
+}
+
+.table{
+   background-color: #5b7ab9;
+}
+
+table.table-bordered{
+    border:1px solid #374f7e;
+    margin-top:20px;
+}
+
+table.table-bordered > thead > tr > th{
+    border:1px solid #374f7e;
+}
+
+table.table-bordered > tbody > tr > td{
+    border:1px solid #374f7e;
+}
+
+div.tres {
+    background-image: url("fundo.png");
+    background-size: cover;
+    background-position: center center;
+    background-color: #5b7ab9;
 }
