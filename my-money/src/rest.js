@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from 'react'
-import axios from 'axios'
+import { firebaseDatabase } from './utils/FirebaseUtils'
 
 const INITIAL_STATE = {
     loading: true,
@@ -28,13 +28,14 @@ const reducer = (state, action) => {
 const init = baseURL => {
     const useGet = resource => {
         const [data, dispatch] = useReducer(reducer, INITIAL_STATE)
-        const [data1, dispatch2] = useReducer(reducer, INITIAL_STATE)
 
         useEffect(() => {
             dispatch({ type: 'REQUEST' })
-            axios.get(baseURL + resource + '.json').then(res => {
-                dispatch({ type: 'SUCCESS', data: res.data })
-            })
+            firebaseDatabase.ref(resource).on("value", function (snapshot) {
+                dispatch({ type: 'SUCCESS', data: snapshot.val() })
+            }, function (errorObject) {
+                console.log("The read failed: " + errorObject.code)
+            });
         }, [])
 
         return data

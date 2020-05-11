@@ -8,12 +8,16 @@ import Rest from '../rest'
 const baseURL = 'https://mymoney-71935.firebaseio.com/'
 const {
     useGet,
-    usePost,
-    useDelete
 } = Rest(baseURL)
 
 const Historic = () => {
-    const [data, setData] = useGet('mes/2020-01')
+    const data = useGet('mes')
+    const [currentMonth, setCurrentMonth] = useState()
+
+    var formatterReal = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    })
 
     if (data.loading) {
         return (
@@ -33,35 +37,64 @@ const Historic = () => {
                 </div>
             </div>
 
-            <div className="tres" style={{ width: "100%", height: "100%" }}>
+            <div className="img_background" style={{ width: "100%", height: "100%" }}>
                 <div className="resize-calendar" style={{ marginLeft: "5%" }}>
-                    <br />
-                    <div>
-                        <table style={{ table: "fixed" }} className="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Mês</th>
-                                    <th>Valor</th>
-                                    <th>Valor</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {data.data &&
-                                    Object
-                                        .keys(data.data)
-                                        .map(mes => {
-                                            return (
-                                                <tr key={mes}>
-                                                    <td>2020-01</td>
-                                                    <td>{data.data[mes].dia}</td>
-                                                    <td>{data.data[mes].valor}</td>
-                                                </tr>
+                    <form className="align-labels">
+                        <div class="form-row justify-content-center">
+                            <div class="form-group col-md-3">
+                                <label for="inputCity">Select month:</label>
+                                <select className='custom-select mr-sm-2 input-color' id='inputMonth' onChange={e => { setCurrentMonth(e.target.value) }}>
+                                    <option selected>...</option>
+                                    {
+                                        Object
+                                            .keys(data.data)
+                                            .map(mes =>
+                                                <option value={mes} key={mes}>
+                                                    {mes}
+                                                </option>
                                             )
-                                        })
-                                }
-                            </tbody>
-                        </table>
-                    </div>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+
+                    {currentMonth && currentMonth !== '...' &&
+                        <div>
+                            <table style={{ table: "fixed" }} className="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Day</th>
+                                        <th>Operation</th>
+                                        <th>Quantity</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        Object
+                                            .keys(data.data[currentMonth])
+                                            .map(dia => {
+                                                return (
+                                                    Object
+                                                        .keys(data.data[currentMonth][dia])
+                                                        .map(key => {
+                                                            return (
+                                                                <tr key={dia}>
+                                                                    <td>{dia}</td>
+                                                                    <td>{data.data[currentMonth][dia][key].operacao}</td>
+                                                                    <td>{formatterReal.format(data.data[currentMonth][dia][key].quantidade)}</td>
+                                                                    <td>{data.data[currentMonth][dia][key].horario}</td>
+                                                                </tr>
+                                                            )
+                                                        })
+                                                )
+                                            })
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
                     <br />
                 </div>
             </div>

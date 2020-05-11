@@ -49,7 +49,7 @@ const Home = () => {
             }).then(() => {
                 firebaseDatabase.ref('mes/' + dateList.join("-") + "/" + day).push({
                     horario: form.time,
-                    operacao: form.operation === '+' ? "Adição (+)" : "Subtração (-)",
+                    operacao: form.operation === '+' ? "+" : "-",
                     quantidade: form.quantity
                 }).then(() => {
                     setShowSaldo(newSaldo)
@@ -60,31 +60,11 @@ const Home = () => {
     }
 
     const dataVerification = async () => {
-        // await setPost({ "12": { valor: 120 } })
-
-        writeUserData()
-
-        // console.log(
-        //     Object
-        //         .keys(data.data)
-        //         .map(mes => {
-        //             return (
-        //                 <tr key={mes}>
-        //                     <td>2020-01</td>
-        //                     <td>{data.data[mes].dia}</td>
-        //                     <td>{data.data[mes].valor}</td>
-        //                 </tr>
-        //             )
-        //         })
-
-        // )
-
-
-        // if (!form.date || !form.time || !form.operation || !form.quantity || form.operation === "Selecione...") {
-        //     window.alert("Favor, preencha todos os campos!")
-        // } else {
-
-        // }
+        if (!form.date || !form.time || !form.operation || !form.quantity || form.operation === "Selecione...") {
+            window.alert("Favor, preencha todos os campos!")
+        } else {
+            writeUserData()
+        }
     }
 
     if (saldo.loading) {
@@ -105,7 +85,7 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className="tres" style={{ width: "100%", height: "100%" }}>
+            <div className="img_background" style={{ width: "100%", height: "100%" }}>
                 <div className="resize-calendar" style={{ marginLeft: "5%" }}>
                     <br />
                     <br />

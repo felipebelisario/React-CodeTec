@@ -15,7 +15,7 @@ const Calendar = () => {
                 </div>
             </div>
 
-            <div className="tres" style={{ width: "100%", height: "100%" }}>
+            <div className="img_background" style={{ width: "100%", height: "100%" }}>
                 <div className="resize-calendar" style={{ marginLeft: "5%" }}>
                     <br />
                     <div>

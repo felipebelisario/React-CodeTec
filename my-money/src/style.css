@@ -158,7 +158,7 @@ table.table-bordered > tbody > tr > td{
     border:1px solid #374f7e;
 }
 
-div.tres {
+div.img_background {
     background-image: url("fundo.png");
     background-size: cover;
     background-position: center center;
